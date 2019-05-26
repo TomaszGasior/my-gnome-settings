@@ -1,5 +1,13 @@
 #!/bin/bash
 
+is_adwaita=
+current_theme=`gsettings get org.gnome.desktop.interface gtk-theme`
+if [[ $current_theme = "'Adwaita'" || $current_theme = "'Adwaita-dark'" ]]; then
+    is_adwaita=yes
+fi
+
+cp $HOME/.config/dconf/user $HOME/.config/dconf/user.bak
+
 echo "Shell"
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
@@ -102,13 +110,15 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-autom
 gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 4000
 
 echo "Fonts"
-ui_fonts=("Droid Sans" "Cantarell" "Ubuntu")
-for name in "${ui_fonts[@]}"; do
-    if [[ $(fc-list "$name") ]]; then
-        gsettings set org.gnome.desktop.interface font-name "$name 10"
-        break
-    fi
-done
+if [[ "$is_adwaita" ]]; then
+    ui_fonts=("Droid Sans" "Cantarell" "Ubuntu")
+    for name in "${ui_fonts[@]}"; do
+        if [[ $(fc-list "$name") ]]; then
+            gsettings set org.gnome.desktop.interface font-name "$name 10"
+            break
+        fi
+    done
+fi
 monospace_fonts=("Source Code Pro" "Consolas")
 for name in "${monospace_fonts[@]}"; do
     if [[ $(fc-list "$name") ]]; then
@@ -152,10 +162,6 @@ gsettings set org.gtk.Settings.FileChooser window-position '(0, 0)'
 gsettings set org.gtk.Settings.FileChooser window-size '(750, 550)'
 dconf write /org/gtk/settings/debug/enable-inspector-keybinding true
 dconf write /org/gtk/settings/debug/inspector-warning false
-mkdir -p "$HOME/.config/gtk-3.0"
-echo " .titlebar .title { font-size: 13px; }" >> "$HOME/.config/gtk-3.0/gtk.css"
-echo " .titlebar .title, .titlebar .subtitle { font-family: 'Droid Sans', 'Cantarell', 'Ubuntu', sans-serif; }" >> "$HOME/.config/gtk-3.0/gtk.css"
-echo " treeview { padding: 2px; -GtkTreeView-horizontal-separator: 5; }" >> "$HOME/.config/gtk-3.0/gtk.css"
 echo "export GTK_OVERLAY_SCROLLING=0" >> "$HOME/.profile"
 
 echo "dconf editor"
@@ -164,3 +170,24 @@ dconf write /ca/desrt/dconf-editor/show-warning false
 dconf write /ca/desrt/dconf-editor/use-shortpaths true
 dconf write /ca/desrt/dconf-editor/window-height 600
 dconf write /ca/desrt/dconf-editor/window-width 800
+
+if [[ -z "$is_adwaita" ]]; then
+    echo "No Adwaita — custom stylesheets skipped"
+    exit
+fi
+
+shell_extension_url="https://codeload.github.com/TomaszGasior/gnome-shell-user-stylesheet/tar.gz/master"
+shell_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gnome-shell.css"
+gtk_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gtk.css"
+
+echo "GTK custom stylesheet"
+mkdir -p $HOME/.config/gtk-3.0
+curl -s $gtk_stylesheet_url >> $HOME/.config/gtk-3.0/gtk.css
+
+echo "Shell custom stylesheet"
+mkdir -p $HOME/.config/gnome-shell
+curl -s $shell_stylesheet_url > $HOME/.config/gnome-shell/gnome-shell.css
+mkdir -p $HOME/.local/share/gnome-shell/extensions
+curl -s $shell_extension_url | tar -xzf - -C $HOME/.local/share/gnome-shell/extensions gnome-shell-user-stylesheet-master/user-stylesheet@tomaszgasior.pl/ --strip-components=1
+enable_cmd="gnome-shell-extension-tool -e user-stylesheet@tomaszgasior.pl"
+$enable_cmd 2> /dev/null || $enable_cmd
