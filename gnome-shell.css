@@ -1,0 +1,81 @@
+/* fonts */
+
+stage {
+    font-family: "Droid Sans", Cantarell, sans-serif;
+    font-size: 10pt;
+}
+
+.headline, .mount-dialog-subject,
+.end-session-dialog-subject, .prompt-dialog-info-label {
+    font-size: 150%;
+    font-family: "PT Sans", sans;
+    text-shadow: 0 0 1px rgba(255,255,255, 0.5);
+
+    color: inherit;
+    font-weight: normal;
+}
+.end-session-dialog-subject {
+    margin-bottom: 10px;
+}
+
+.modal-dialog .run-dialog-label {
+    font-weight: normal;
+    font-size: 100%;
+}
+
+
+/* panel */
+
+.panel-corner {
+    -panel-corner-radius: 0px;
+    -panel-corner-background-color: transparent;
+    -panel-corner-border-width: 0px;
+    -panel-corner-border-color: transparent;
+}
+
+
+/* notification */
+
+.notification-banner {
+    background: rgba(46, 52, 54, 0.9);
+    font-size: 100%;
+}
+
+.osd-window {
+    background: rgba(46, 52, 54, 0.8);
+}
+
+
+/* menus */
+
+.popup-separator-menu-item {
+    border-color: rgba(0,0,0, 0.2);
+    margin: 0;
+}
+.popup-menu .popup-menu-item {
+    spacing: 5px;
+}
+.popup-sub-menu .popup-menu-item > :first-child:ltr {
+    color: red;
+    margin-left: 0.71em;
+}
+
+StScrollView.vfade {
+  -st-vfade-offset: 10px;
+}
+StScrollView.hfade {
+  -st-hfade-offset: 10px;
+}
+
+
+/* overview and search */
+
+#overview {
+    text-shadow: 0 0 5px #000;
+}
+.list-search-result-title {
+    color: #fff;
+}
+.list-search-result-description {
+    color: rgba(255, 255, 255, 0.8);
+}

@@ -1,0 +1,241 @@
+/* smaller widgets */
+
+button {
+    min-height: 20px;
+}
+button:not(.text-button):not(.combo) {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+button.image-button:not(.text-button) {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+button.sidebar-button.image-button {
+    min-width: 20px;
+    min-height: 20px;
+    padding: 0;
+}
+button.slider-button:not(.text-button) {
+    padding-left: 0;
+    padding-right: 0;
+}
+button.selection-menu {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+button.circular {
+    min-height: 30px;
+}
+entry, spinbutton {
+    min-height: 28px;
+}
+stackswitcher > button.text-button:not(.circular) {
+    min-width: 65px;
+}
+toolbar.inline-toolbar button.image-button {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+treeview header button {
+    min-height: 27px;
+}
+
+notebook tabs {
+    padding: 0;
+}
+notebook tab {
+    margin: 0;
+    min-height: 25px;
+}
+notebook tab button.flat {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+toolbutton button {
+    padding: 1px 5px;
+}
+toolbutton button.popup.toggle {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+toolbutton button label {
+    padding-left: 1px;
+    padding-right: 0;
+}
+
+tooltip * {
+    padding: 1px 2px;
+}
+
+popover.background {
+    padding: 0;
+}
+
+row > grid, row > box {
+    margin-top: -2px;
+    margin-bottom: -2px;
+}
+
+placessidebar row {
+    min-height: 30px;
+}
+placessidebar row revealer {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+
+/* smaller titlebars */
+
+.titlebar, headerbar {
+    min-height: 34px;
+}
+button.titlebutton {
+    min-height: 28px;
+    min-width: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+headerbar switch {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.default-decoration {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.maximized .default-decoration,
+.tiled .default-decoration {
+    min-height: 28px;
+}
+.maximized .default-decoration .titlebutton,
+.tiled .default-decoration .titlebutton {
+    min-height: 22px;
+}
+
+
+/* better readability */
+
+menu separator {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+popover.background separator.horizontal {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+treeview {
+    padding: 2px;
+    -GtkTreeView-horizontal-separator: 5;
+}
+
+.dim-label, .titlebar.subtitle {
+    opacity: 0.8;
+}
+
+menu menuitem check:not(:checked),
+menu menuitem radio:not(:checked) {
+    border-color: alpha(currentColor, 0.3);
+}
+
+modelbutton.flat {
+    border-radius: 2px;
+}
+modelbutton.flat:hover {
+    color: @theme_selected_fg_color;
+    background-color: @theme_selected_bg_color;
+}
+
+progressbar.horizontal trough,
+progressbar.horizontal progress {
+    min-height: 8px;
+}
+progressbar.vertical trough,
+progressbar.vertical progress {
+    min-width: 8px;
+}
+levelbar trough {
+    min-height: 7px;
+}
+
+
+/* custom changes */
+
+.titlebar .title, .titlebar .subtitle {
+    font-family: "PT Sans", sans-serif;
+}
+.titlebar .title {
+    font-size: 14px;
+}
+
+filechooser #pathbarbox {
+    background: none;
+    border-bottom: 1px solid @unfocused_borders;
+}
+
+popover.background {
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+popover.menu {
+    background: @content_view_bg;
+}
+
+toolbutton button {
+    -gtk-icon-style: symbolic;
+}
+
+.titlebar > .right, .titlebar > headerbar > .right {
+    margin-left: -6px;
+}
+
+
+/* dialogs */
+
+* {
+    -GtkDialog-action-area-border: 5;
+}
+
+messagedialog {
+    -GtkDialog-action-area-border: 0;
+}
+messagedialog .dialog-action-area button {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+messagedialog .titlebar .title {
+    margin-top: 1px;
+    opacity: 0.7;
+}
+messagedialog .titlebar {
+    min-height: 0;
+}
+messagedialog .dialog-vbox {
+    margin-top: 11px;
+}
+
+
+/* nautilus */
+
+.nautilus-window button.disclosure-button {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.nautilus-window .nautilus-path-bar button:first-child image:first-child {
+    margin-right: -6px;
+    margin-left: 4px;
+}
+
+
+/* terminal */
+
+terminal-window notebook button {
+    min-height: 20px;
+    min-width: 20px;
+    padding: 0;
+}
