@@ -33,6 +33,15 @@ gsettings set org.gnome.nautilus.preferences executable-text-activation 'ask'
 gsettings set org.gnome.nautilus.preferences show-create-link true
 gsettings set org.gnome.nautilus.window-state initial-size '(920, 550)'
 gsettings set org.gnome.nautilus.window-state sidebar-width 160
+if [[ `command -v xdg-user-dir` ]]; then
+    templates_dir=`xdg-user-dir TEMPLATES`
+    mkdir -p $templates_dir
+    if [[ $LANG = "pl_PL.UTF-8" ]]; then
+        touch $templates_dir/Nowy\ pusty\ plik
+    else
+        touch $templates_dir/New\ empty\ file
+    fi
+fi
 
 echo "Mouse and touchpad"
 gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled true
