@@ -5,7 +5,7 @@ gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface show-battery-percentage true
-gsettings set org.gnome.shell always-show-log-out false
+gsettings set org.gnome.shell always-show-log-out true
 gsettings set org.gnome.shell.window-switcher current-workspace-only true
 gsettings set org.gnome.shell.window-switcher app-icon-mode 'both'
 
@@ -21,6 +21,7 @@ gsettings set org.gnome.nautilus.icon-view default-zoom-level 'standard'
 gsettings set org.gnome.nautilus.list-view default-zoom-level 'small'
 gsettings set org.gnome.nautilus.list-view default-visible-columns "['name', 'size', 'type', 'date_modified']"
 gsettings set org.gnome.nautilus.list-view use-tree-view true
+gsettings set org.gnome.nautilus.preferences executable-text-activation 'ask'
 gsettings set org.gnome.nautilus.preferences show-create-link true
 gsettings set org.gnome.nautilus.window-state initial-size '(920, 550)'
 gsettings set org.gnome.nautilus.window-state sidebar-width 160
@@ -155,6 +156,7 @@ mkdir -p "$HOME/.config/gtk-3.0"
 echo " .titlebar .title { font-size: 13px; }" >> "$HOME/.config/gtk-3.0/gtk.css"
 echo " .titlebar .title, .titlebar .subtitle { font-family: 'Droid Sans', 'Cantarell', 'Ubuntu', sans-serif; }" >> "$HOME/.config/gtk-3.0/gtk.css"
 echo " treeview { padding: 2px; -GtkTreeView-horizontal-separator: 5; }" >> "$HOME/.config/gtk-3.0/gtk.css"
+echo "export GTK_OVERLAY_SCROLLING=0" >> "$HOME/.profile"
 
 echo "dconf editor"
 dconf write /ca/desrt/dconf-editor/behaviour "'safe'"
