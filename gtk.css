@@ -24,9 +24,6 @@ button.selection-menu {
     padding-top: 4px;
     padding-bottom: 4px;
 }
-button.circular {
-    min-height: 30px;
-}
 entry, spinbutton {
     min-height: 28px;
 }
