@@ -8,7 +8,7 @@ stage {
 .headline, .mount-dialog-subject,
 .end-session-dialog-subject, .prompt-dialog-info-label {
     font-size: 150%;
-    font-family: "PT Sans", sans;
+    font-family: "PT Sans", Cantarell, sans-serif;
     text-shadow: 0 0 1px rgba(255,255,255, 0.5);
 
     color: inherit;
