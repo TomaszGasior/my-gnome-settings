@@ -188,18 +188,23 @@ if [[ -z "$is_adwaita" ]]; then
     exit
 fi
 
+download_cmd="wget -q -O -"
+if [[ `command -v curl` ]]; then
+    download_cmd="curl -s"
+fi
+
 shell_extension_url="https://codeload.github.com/TomaszGasior/gnome-shell-user-stylesheet/tar.gz/master"
 shell_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gnome-shell.css"
 gtk_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gtk.css"
 
 heading "GTK custom stylesheet"
 mkdir -p $HOME/.config/gtk-3.0
-curl -s $gtk_stylesheet_url >> $HOME/.config/gtk-3.0/gtk.css
+$download_cmd $gtk_stylesheet_url >> $HOME/.config/gtk-3.0/gtk.css
 
 heading "Shell custom stylesheet"
 mkdir -p $HOME/.config/gnome-shell
-curl -s $shell_stylesheet_url > $HOME/.config/gnome-shell/gnome-shell.css
+$download_cmd $shell_stylesheet_url > $HOME/.config/gnome-shell/gnome-shell.css
 mkdir -p $HOME/.local/share/gnome-shell/extensions
-curl -s $shell_extension_url | tar -xzf - -C $HOME/.local/share/gnome-shell/extensions gnome-shell-user-stylesheet-master/user-stylesheet@tomaszgasior.pl/ --strip-components=1
+$download_cmd $shell_extension_url | tar -xzf - -C $HOME/.local/share/gnome-shell/extensions gnome-shell-user-stylesheet-master/user-stylesheet@tomaszgasior.pl/ --strip-components=1
 enable_cmd="gnome-shell-extension-tool -e user-stylesheet@tomaszgasior.pl"
 $enable_cmd 2> /dev/null || $enable_cmd
