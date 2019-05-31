@@ -18,6 +18,14 @@ gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.shell always-show-log-out true
 gsettings set org.gnome.shell.window-switcher current-workspace-only true
 gsettings set org.gnome.shell.window-switcher app-icon-mode 'both'
+if [[ `gnome-shell --version  | grep -o -E '\.[0-9]+\.' | grep -o -E '[0-9]+'` -lt 32 ]]; then
+    wm_buttons=`gsettings get org.gnome.desktop.wm.preferences button-layout | grep -o -E "[^']+"`
+    if [[ `echo $wm_buttons | grep -v appmenu` ]]; then
+        wm_buttons=appmenu,$wm_buttons
+        gsettings set org.gnome.desktop.wm.preferences button-layout "'$wm_buttons'"
+    fi
+    gsettings set org.gnome.settings-daemon.plugins.xsettings overrides "{'Gtk/ShellShowsAppMenu': <0>}"
+fi
 
 heading "Window manager"
 gsettings set org.gnome.desktop.wm.preferences action-middle-click-titlebar 'minimize'
