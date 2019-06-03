@@ -185,6 +185,7 @@ gsettings set org.gtk.Settings.FileChooser window-size '(750, 550)'
 dconf write /org/gtk/settings/debug/enable-inspector-keybinding true
 dconf write /org/gtk/settings/debug/inspector-warning false
 echo "export GTK_OVERLAY_SCROLLING=0" >> "$HOME/.profile"
+echo "export GTK_OVERLAY_SCROLLING=0" >> "$HOME/.bashrc"
 
 heading "dconf editor"
 dconf write /ca/desrt/dconf-editor/behaviour "'safe'"
