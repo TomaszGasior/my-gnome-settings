@@ -167,6 +167,8 @@ gsettings set org.gnome.desktop.a11y always-show-text-caret false
 gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
 if [[ -d '/usr/share/icons/Vanilla-DMZ' ]]; then
     gsettings set org.gnome.desktop.interface cursor-theme 'Vanilla-DMZ'
+elif [[ -d '/usr/share/icons/dmz' ]]; then
+    gsettings set org.gnome.desktop.interface cursor-theme 'dmz'
 fi
 dconf write /org/flozz/nautilus-terminal/default-show-terminal false
 
