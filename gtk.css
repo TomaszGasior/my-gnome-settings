@@ -70,11 +70,6 @@ popover.background {
     padding: 0;
 }
 
-row > grid, row > box {
-    margin-top: -2px;
-    margin-bottom: -2px;
-}
-
 placessidebar row {
     min-height: 30px;
 }
