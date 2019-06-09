@@ -30,6 +30,9 @@ entry, spinbutton {
 stackswitcher > button.text-button:not(.circular) {
     min-width: 65px;
 }
+.stack-switcher > button > image {
+    padding: 0 4px;
+}
 toolbar.inline-toolbar button.image-button {
     padding-top: 4px;
     padding-bottom: 4px;
@@ -48,6 +51,10 @@ notebook tab {
 notebook tab button.flat {
     margin-top: 1px;
     margin-bottom: 1px;
+}
+notebook > header > tabs > tab > box > button.flat:not(.text-button):not(.combo) {
+    padding-left: 1px;
+    padding-right: 1px;
 }
 
 toolbutton button {
