@@ -203,7 +203,7 @@ if [[ `gsettings writable org.flozz.nautilus-terminal default-show-terminal 2> /
     set_gsetting org.flozz.nautilus-terminal use-custom-command true
 fi
 
-if [[ `cat /etc/os-release | grep Ubuntu` ]]; then
+if [[ `cat /etc/os-release 2> /dev/null | grep Ubuntu` ]]; then
     heading "Ubuntu detected — custom stylesheets skipped"
     exit
 fi
@@ -229,6 +229,6 @@ gio trash $HOME/.config/gnome-shell/gnome-shell.css 2> /dev/null
 $download_cmd $shell_stylesheet_url > $HOME/.config/gnome-shell/gnome-shell.css
 mkdir -p $HOME/.local/share/gnome-shell/extensions
 gio trash $HOME/.local/share/gnome-shell/extensions/user-stylesheet@tomaszgasior.pl 2> /dev/null && gnome-shell-extension-tool -d user-stylesheet@tomaszgasior.pl 2> /dev/null
-$download_cmd $shell_extension_url | tar -xzf - -C $HOME/.local/share/gnome-shell/extensions gnome-shell-user-stylesheet-master/user-stylesheet@tomaszgasior.pl/ --strip-components=1
+$download_cmd $shell_extension_url | tar --strip-components=1 -xzf - -C $HOME/.local/share/gnome-shell/extensions gnome-shell-user-stylesheet-master/user-stylesheet@tomaszgasior.pl/
 result=`gnome-shell-extension-tool -e user-stylesheet@tomaszgasior.pl 2>&1`
 if [[ $? != 0 ]]; then echo $result; fi
