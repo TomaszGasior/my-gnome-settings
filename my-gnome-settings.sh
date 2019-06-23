@@ -135,13 +135,15 @@ set_gsetting org.gnome.settings-daemon.plugins.color night-light-temperature 400
 heading "Fonts"
 ui_fonts=("Cantarell" "Droid Sans" "Ubuntu")
 monospace_fonts=("Source Code Pro" "Consolas")
-for name in "${ui_fonts[@]}"; do
-    if [[ `fc-list "$name"` ]]; then
-        set_gsetting org.gnome.desktop.interface font-name "$name 10"
-        set_gsetting org.gnome.desktop.interface document-font-name "$name 11"
-        break
-    fi
-done
+if [[ "$GNOME_SHELL_SESSION_MODE" != "ubuntu" ]]; then
+    for name in "${ui_fonts[@]}"; do
+        if [[ `fc-list "$name"` ]]; then
+            set_gsetting org.gnome.desktop.interface font-name "$name 10"
+            set_gsetting org.gnome.desktop.interface document-font-name "$name 11"
+            break
+        fi
+    done
+fi
 for name in "${monospace_fonts[@]}"; do
     if [[ `fc-list "$name"` ]]; then
         set_gsetting org.gnome.desktop.interface monospace-font-name "$name 10"
@@ -203,7 +205,7 @@ if [[ `gsettings writable org.flozz.nautilus-terminal default-show-terminal 2> /
     set_gsetting org.flozz.nautilus-terminal use-custom-command true
 fi
 
-if [[ `cat /etc/os-release 2> /dev/null | grep Ubuntu` ]]; then
+if [[ "$GNOME_SHELL_SESSION_MODE" = "ubuntu" ]]; then
     heading "Ubuntu detected — custom stylesheets skipped"
     exit
 fi
