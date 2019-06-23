@@ -165,11 +165,8 @@ levelbar trough {
 
 /* custom changes */
 
-.titlebar .title, .titlebar .subtitle {
-    font-family: "PT Sans", Cantarell, sans-serif;
-}
 .titlebar .title {
-    font-size: 14px;
+    font-size: 1.04em;
 }
 
 filechooser #pathbarbox {

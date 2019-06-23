@@ -1,26 +1,24 @@
 /* fonts */
 
 stage {
-    font-family: "Droid Sans", Cantarell, sans-serif;
     font-size: 10pt;
 }
 
 .headline, .mount-dialog-subject,
 .end-session-dialog-subject, .prompt-dialog-info-label {
-    font-size: 150%;
-    font-family: "PT Sans", Cantarell, sans-serif;
+    font-size: 1.35em;
     text-shadow: 0 0 1px rgba(255,255,255, 0.5);
 
     color: inherit;
     font-weight: normal;
 }
 .end-session-dialog-subject {
-    margin-bottom: 10px;
+    margin-bottom: 13px;
 }
 
 .modal-dialog .run-dialog-label {
     font-weight: normal;
-    font-size: 100%;
+    font-size: 1em;
 }
 
 
@@ -38,7 +36,7 @@ stage {
 
 .notification-banner {
     background: rgba(46, 52, 54, 0.9);
-    font-size: 100%;
+    font-size: 1em;
 }
 
 .osd-window {
@@ -56,7 +54,6 @@ stage {
     spacing: 5px;
 }
 .popup-sub-menu .popup-menu-item > :first-child:ltr {
-    color: red;
     margin-left: 0.71em;
 }
 
