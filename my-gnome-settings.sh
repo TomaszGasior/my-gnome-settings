@@ -124,7 +124,7 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-autom
 gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 4000
 
 heading "Fonts"
-ui_fonts=("Droid Sans" "Cantarell" "Ubuntu")
+ui_fonts=("Cantarell" "Droid Sans" "Ubuntu")
 monospace_fonts=("Source Code Pro" "Consolas")
 for name in "${ui_fonts[@]}"; do
     if [[ $(fc-list "$name") ]]; then
