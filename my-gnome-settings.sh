@@ -2,12 +2,6 @@
 
 heading() { echo -e "\e[1m### \e[7m$1\e[0m"; }
 
-is_adwaita=
-current_theme=`gsettings get org.gnome.desktop.interface gtk-theme`
-if [[ $current_theme = "'Adwaita'" || $current_theme = "'Adwaita-dark'" ]]; then
-    is_adwaita=yes
-fi
-
 cp $HOME/.config/dconf/user $HOME/.config/dconf/user.bak
 
 heading "Shell"
@@ -130,16 +124,14 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-autom
 gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 4000
 
 heading "Fonts"
-if [[ "$is_adwaita" ]]; then
-    ui_fonts=("Droid Sans" "Cantarell" "Ubuntu")
-    for name in "${ui_fonts[@]}"; do
-        if [[ $(fc-list "$name") ]]; then
-            gsettings set org.gnome.desktop.interface font-name "$name 10"
-            break
-        fi
-    done
-fi
+ui_fonts=("Droid Sans" "Cantarell" "Ubuntu")
 monospace_fonts=("Source Code Pro" "Consolas")
+for name in "${ui_fonts[@]}"; do
+    if [[ $(fc-list "$name") ]]; then
+        gsettings set org.gnome.desktop.interface font-name "$name 10"
+        break
+    fi
+done
 for name in "${monospace_fonts[@]}"; do
     if [[ $(fc-list "$name") ]]; then
         gsettings set org.gnome.desktop.interface monospace-font-name "$name 10"
@@ -194,8 +186,8 @@ dconf write /ca/desrt/dconf-editor/use-shortpaths true
 dconf write /ca/desrt/dconf-editor/window-height 600
 dconf write /ca/desrt/dconf-editor/window-width 800
 
-if [[ -z "$is_adwaita" ]]; then
-    heading "No Adwaita — custom stylesheets skipped"
+if [[ `cat /etc/os-release | grep Ubuntu` ]]; then
+    heading "Ubuntu detected — custom stylesheets skipped"
     exit
 fi
 
