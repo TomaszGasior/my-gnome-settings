@@ -127,13 +127,13 @@ heading "Fonts"
 ui_fonts=("Cantarell" "Droid Sans" "Ubuntu")
 monospace_fonts=("Source Code Pro" "Consolas")
 for name in "${ui_fonts[@]}"; do
-    if [[ $(fc-list "$name") ]]; then
+    if [[ `fc-list "$name"` ]]; then
         gsettings set org.gnome.desktop.interface font-name "$name 10"
         break
     fi
 done
 for name in "${monospace_fonts[@]}"; do
-    if [[ $(fc-list "$name") ]]; then
+    if [[ `fc-list "$name"` ]]; then
         gsettings set org.gnome.desktop.interface monospace-font-name "$name 10"
         break
     fi
