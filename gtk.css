@@ -199,6 +199,8 @@ toolbutton button {
 
 messagedialog {
     -GtkDialog-action-area-border: 0;
+    -GtkWidget-window-dragging: true;
+
 }
 messagedialog .dialog-action-area button {
     padding-top: 8px;
