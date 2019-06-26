@@ -190,6 +190,8 @@ set_gsetting org.gnome.desktop.a11y always-show-text-caret false
 set_gsetting org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
 if [[ -d '/usr/share/icons/Vanilla-DMZ' ]]; then
     set_gsetting org.gnome.desktop.interface cursor-theme 'Vanilla-DMZ'
+elif [[ -d '/usr/share/icons/DMZ-White' ]]; then
+    set_gsetting org.gnome.desktop.interface cursor-theme 'DMZ-White'
 elif [[ -d '/usr/share/icons/dmz' ]]; then
     set_gsetting org.gnome.desktop.interface cursor-theme 'dmz'
 fi
