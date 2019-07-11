@@ -151,7 +151,10 @@ for name in "${monospace_fonts[@]}"; do
     fi
 done
 set_gsetting org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
-set_gsetting org.gnome.settings-daemon.plugins.xsettings hinting 'slight'
+set_gsetting org.gnome.settings-daemon.plugins.xsettings hinting 'full'
+mkdir -p $HOME/.config/fontconfig/conf.d/
+echo '<fontconfig><match target="font"><edit mode="assign" name="lcdfilter"><const>lcddefault</const></edit></match></fontconfig>' > $HOME/.config/fontconfig/conf.d/15-cleartype.conf
+echo '<fontconfig><match target="font"><test qual="any" name="family"><string>Cantarell</string></test><edit name="fontfeatures" mode="append"><string>tnum</string></edit></match></fontconfig>' > $HOME/.config/fontconfig/conf.d/25-cantarell-tnum.conf
 
 heading "Desktop background"
 bg_images=(
