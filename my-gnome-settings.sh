@@ -4,7 +4,8 @@ heading() {
     echo -e "\e[1m### \e[7m$1\e[0m";
 }
 set_gsetting() {
-    if [[ $3 != `gsettings get "$1" "$2"` ]]; then
+    previous_value=`gsettings get "$1" "$2"`
+    if [[ "$3" != "$previous_value" && "'$3'" != "$previous_value" ]]; then
         gsettings set "$1" "$2" "$3"
     fi
 }
