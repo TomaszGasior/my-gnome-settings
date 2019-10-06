@@ -3,15 +3,33 @@
 	[
 		{
 			"path": ".",
+            "name": "My GNOME settings",
 
             "file_exclude_patterns": [
                 "*.sublime-project",
+                "*.sublime-workspace",
                 ".gitignore",
                 ".hidden",
                 "sync.sh",
                 "gnome.php",
             ],
-		}
+		},
+        {
+            "path": "/home/tomasz/.config/gtk-3.0",
+            "name": "GTK3 settings",
+
+            "file_include_patterns": [
+                "gtk.css",
+            ],
+        },
+        {
+            "path": "/home/tomasz/.config/gnome-shell",
+            "name": "GNOME Shell settings",
+
+            "file_include_patterns": [
+                "gnome-shell.css",
+            ],
+        },
 	],
 
     "settings":
