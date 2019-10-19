@@ -15,10 +15,13 @@ stage {
 .end-session-dialog-subject {
     margin-bottom: 13px;
 }
-
 .modal-dialog .run-dialog-label {
     font-weight: normal;
     font-size: 1em;
+}
+
+.datemenu-today-button .date-label {
+    font-weight: 400;
 }
 
 
