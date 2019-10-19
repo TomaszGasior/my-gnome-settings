@@ -79,3 +79,10 @@ StScrollView.hfade {
 .list-search-result-description {
     color: rgba(255, 255, 255, 0.8);
 }
+
+
+/* workspace switcher */
+
+.ws-switcher-box {
+    height: 30px;
+}
