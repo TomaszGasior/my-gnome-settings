@@ -81,11 +81,11 @@ set_gsetting org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
 set_gsetting org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
 set_gsetting org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>Up']"
 set_gsetting org.gnome.shell.keybindings open-application-menu "[]"
-set_gsetting org.gnome.settings-daemon.plugins.media-keys next '<Super>F12'
-set_gsetting org.gnome.settings-daemon.plugins.media-keys pause '<Super>F10'
-set_gsetting org.gnome.settings-daemon.plugins.media-keys play '<Super>F9'
-set_gsetting org.gnome.settings-daemon.plugins.media-keys previous '<Super>F11'
-set_gsetting org.gnome.settings-daemon.plugins.media-keys stop ''
+set_gsetting org.gnome.settings-daemon.plugins.media-keys next "['<Super>F12']"
+set_gsetting org.gnome.settings-daemon.plugins.media-keys pause '[]'
+set_gsetting org.gnome.settings-daemon.plugins.media-keys play "['<Super>F9']"
+set_gsetting org.gnome.settings-daemon.plugins.media-keys previous "['<Super>F11']"
+set_gsetting org.gnome.settings-daemon.plugins.media-keys stop "['<Super>F10']"
 
 heading "Custom keyboard shortcuts"
 set_gsetting org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
