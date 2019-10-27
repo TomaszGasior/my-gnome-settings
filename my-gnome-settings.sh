@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 heading() {
     echo -e "\e[1m### \e[7m$1\e[0m";
@@ -123,7 +124,7 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 40
 heading "Fonts"
 ui_fonts=("Cantarell" "Droid Sans" "Ubuntu")
 monospace_fonts=("Source Code Pro" "Consolas")
-if [[ "$GNOME_SHELL_SESSION_MODE" != "ubuntu" ]]; then
+if [[ "${GNOME_SHELL_SESSION_MODE:-}" != "ubuntu" ]]; then
     for name in "${ui_fonts[@]}"; do
         if [[ `fc-list "$name"` ]]; then
             gsettings set org.gnome.desktop.interface font-name "$name 10"
@@ -192,7 +193,7 @@ if [[ `gsettings writable org.flozz.nautilus-terminal default-show-terminal 2> /
     gsettings set org.flozz.nautilus-terminal use-custom-command true
 fi
 
-if [[ "$GNOME_SHELL_SESSION_MODE" = "ubuntu" ]]; then
+if [[ "${GNOME_SHELL_SESSION_MODE:-}" = "ubuntu" ]]; then
     heading "Ubuntu detected — custom stylesheets skipped"
     exit
 fi
@@ -209,12 +210,12 @@ gtk_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-sett
 
 heading "GTK custom stylesheet"
 mkdir -p $HOME/.config/gtk-3.0
-gio trash $HOME/.config/gtk-3.0/gtk.css 2> /dev/null
+gio trash $HOME/.config/gtk-3.0/gtk.css 2> /dev/null || true
 $download_cmd $gtk_stylesheet_url > $HOME/.config/gtk-3.0/gtk.css
 
 heading "Shell custom stylesheet"
 mkdir -p $HOME/.config/gnome-shell
-gio trash $HOME/.config/gnome-shell/gnome-shell.css 2> /dev/null
+gio trash $HOME/.config/gnome-shell/gnome-shell.css 2> /dev/null || true
 $download_cmd $shell_stylesheet_url > $HOME/.config/gnome-shell/gnome-shell.css
 mkdir -p $HOME/.local/share/gnome-shell/extensions
 gio trash $HOME/.local/share/gnome-shell/extensions/user-stylesheet@tomaszgasior.pl 2> /dev/null && gnome-shell-extension-tool -d user-stylesheet@tomaszgasior.pl 2> /dev/null
