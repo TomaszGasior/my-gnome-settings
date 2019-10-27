@@ -4,8 +4,9 @@ heading() {
     echo -e "\e[1m### \e[7m$1\e[0m";
 }
 
-cp $HOME/.config/dconf/user "$HOME/.config/dconf/dconf--user.bak.`date -Iseconds`"
-gio trash "$HOME/.config/dconf/dconf--user.bak.`date -Iseconds`" 2> /dev/null
+dconf_backup_file="$HOME/.config/dconf/dconf-dump-`date -Iseconds`"
+dconf dump / > $dconf_backup_file
+gio trash $dconf_backup_file 2> /dev/null
 
 heading "Shell"
 gsettings set org.gnome.desktop.interface clock-show-date true
