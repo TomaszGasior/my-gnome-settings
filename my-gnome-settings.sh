@@ -176,12 +176,6 @@ gsettings set org.gtk.Settings.FileChooser window-position '(0, 0)'
 gsettings set org.gtk.Settings.FileChooser window-size '(750, 550)'
 dconf write /org/gtk/settings/debug/enable-inspector-keybinding true
 dconf write /org/gtk/settings/debug/inspector-warning false
-if [[ -z `cat .profile 2> /dev/null | grep GTK_OVERLAY_SCROLLING` ]]; then
-    echo "export GTK_OVERLAY_SCROLLING=0" >> "$HOME/.profile"
-    if [[ `command -v systemctl` ]]; then
-        systemctl --user set-environment GTK_OVERLAY_SCROLLING=0
-    fi
-fi
 
 heading "Various"
 gsettings set org.gnome.desktop.a11y always-show-text-caret false
