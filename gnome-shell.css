@@ -34,6 +34,11 @@ stage {
     -panel-corner-border-color: transparent;
 }
 
+.panel-logo-icon {
+    icon-size: 1px;
+    padding-right: 0;
+}
+
 
 /* notification */
 
