@@ -3,6 +3,9 @@ set -euo pipefail
 
 ____() { echo -e "\e[1m### \e[7m$1\e[0m"; }
 
+ubuntu_session="" && [[ "${GNOME_SHELL_SESSION_MODE:-}" = "ubuntu" ]] && ubuntu_session="yes"
+download_cmd="wget -q -O -" && [[ `command -v curl` ]] && download_cmd="curl -s"
+
 dconf_backup_file="$HOME/.config/dconf/dconf-dump-`date -Iseconds`"
 dconf dump / > $dconf_backup_file
 gio trash $dconf_backup_file 2> /dev/null
@@ -158,24 +161,18 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 40
 
 ____ "Fonts"
 
-ui_fonts=("Cantarell" "Droid Sans" "Ubuntu")
-monospace_fonts=("Source Code Pro" "Consolas")
 
-if [[ "${GNOME_SHELL_SESSION_MODE:-}" != "ubuntu" ]]; then
-    for name in "${ui_fonts[@]}"; do
-        if [[ `fc-list "$name"` ]]; then
-            gsettings set org.gnome.desktop.interface font-name "$name 10"
-            gsettings set org.gnome.desktop.interface document-font-name "$name 11"
-            break
-        fi
-    done
-fi
-for name in "${monospace_fonts[@]}"; do
-    if [[ `fc-list "$name"` ]]; then
-        gsettings set org.gnome.desktop.interface monospace-font-name "$name 10"
-        break
+if [[ -z "$ubuntu_session" ]]; then
+    if [[ `fc-list "Cantarell"` ]]; then
+        gsettings set org.gnome.desktop.interface font-name "Cantarell 10"
+        gsettings set org.gnome.desktop.interface document-font-name "Cantarell 11"
     fi
-done
+
+    if [[ `fc-list "Source Code Pro"` ]]; then
+        gsettings set org.gnome.desktop.interface monospace-font-name "Source Code Pro 10"
+    fi
+fi
+
 
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'full'
@@ -244,15 +241,9 @@ if [[ `gsettings writable org.flozz.nautilus-terminal default-show-terminal 2> /
     gsettings set org.flozz.nautilus-terminal use-custom-command true
 fi
 
-if [[ "${GNOME_SHELL_SESSION_MODE:-}" = "ubuntu" ]]; then
-    ____ "Ubuntu detected — custom stylesheets skipped"
-    exit
-fi
 
-if [[ `command -v curl` ]]; then
-    download_cmd="curl -s"
-else
-    download_cmd="wget -q -O -"
+if [[ -n "$ubuntu_session" ]]; then
+    exit
 fi
 
 
@@ -271,8 +262,8 @@ shell_extension_url="https://codeload.github.com/TomaszGasior/gnome-shell-user-s
 shell_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gnome-shell.css"
 
 gio trash $HOME/.config/gnome-shell/gnome-shell.css 2> /dev/null || true
-gio trash $HOME/.local/share/gnome-shell/extensions/user-stylesheet@tomaszgasior.pl 2> /dev/null \
-    && gnome-shell-extension-tool -d user-stylesheet@tomaszgasior.pl 2> /dev/null
+gio trash $HOME/.local/share/gnome-shell/extensions/user-stylesheet@tomaszgasior.pl 2> /dev/null
+gnome-shell-extension-tool -d user-stylesheet@tomaszgasior.pl 2> /dev/null
 
 mkdir -p $HOME/.config/gnome-shell
 $download_cmd $shell_stylesheet_url > $HOME/.config/gnome-shell/gnome-shell.css
