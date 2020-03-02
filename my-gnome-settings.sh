@@ -201,8 +201,11 @@ fi
 ____ "Desktop background"
 
 bg_images=(
-    "/usr/share/backgrounds/gnome/Fabric.jpg"
+    "/usr/share/backgrounds/f31/default/standard/f31.png"
     "/usr/share/backgrounds/fedora-workstation/dutch_skies.jpg"
+    "/usr/share/backgrounds/ubuntu-default-greyscale-wallpaper.png"
+    "/usr/share/images/desktop-base/desktop-background"
+    "/usr/share/backgrounds/gnome/Fabric.jpg"
 )
 for bg_file in "${bg_images[@]}"; do
     if [[ -f "$bg_file" ]]; then
