@@ -138,6 +138,12 @@ gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path scrollbar-policy '
 gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path use-system-font true
 gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path word-char-exceptions "''"
 
+if [[ -n "$ubuntu_session" ]]; then
+    gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path background-color 'rgb(33,33,33)'
+    gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path foreground-color 'rgb(247,247,247)'
+    gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path use-theme-colors false
+fi
+
 
 ____ "Text editor"
 
@@ -223,7 +229,7 @@ dconf write /org/gtk/settings/debug/enable-inspector-keybinding true
 dconf write /org/gtk/settings/debug/inspector-warning false
 
 
-____ "Various"
+____ "Various desktop"
 
 gsettings set org.gnome.desktop.a11y always-show-text-caret false
 gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
@@ -235,6 +241,14 @@ elif [[ -d '/usr/share/icons/DMZ-White' ]]; then
 elif [[ -d '/usr/share/icons/dmz' ]]; then
     gsettings set org.gnome.desktop.interface cursor-theme 'dmz'
 fi
+
+if [[ -n "$ubuntu_session" ]]; then
+    dconf write /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size 32
+    dconf write /org/gnome/shell/extensions/dash-to-dock/transparency-mode "'DEFAULT'"
+fi
+
+
+____ "Various apps"
 
 dconf write /ca/desrt/dconf-editor/behaviour "'safe'"
 dconf write /ca/desrt/dconf-editor/show-warning false
