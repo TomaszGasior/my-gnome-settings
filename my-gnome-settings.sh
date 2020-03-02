@@ -229,7 +229,7 @@ dconf write /org/gtk/settings/debug/enable-inspector-keybinding true
 dconf write /org/gtk/settings/debug/inspector-warning false
 
 
-____ "Various desktop"
+____ "Various desktop settings"
 
 gsettings set org.gnome.desktop.a11y always-show-text-caret false
 gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
@@ -248,7 +248,7 @@ if [[ -n "$ubuntu_session" ]]; then
 fi
 
 
-____ "Various apps"
+____ "Optional applications"
 
 dconf write /ca/desrt/dconf-editor/behaviour "'safe'"
 dconf write /ca/desrt/dconf-editor/show-warning false
