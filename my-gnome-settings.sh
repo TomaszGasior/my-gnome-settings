@@ -26,8 +26,9 @@ ____ "Window manager"
 
 gsettings set org.gnome.desktop.wm.preferences action-middle-click-titlebar 'minimize'
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:close'
-gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Alt>'
+gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'
 gsettings set org.gnome.mutter auto-maximize false
+gsettings set org.gnome.mutter attach-modal-dialogs false
 gsettings set org.gnome.mutter center-new-windows false
 
 
@@ -56,10 +57,10 @@ fi
 
 ____ "Mouse and touchpad"
 
-gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled true
+gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled false
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
-gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled false
+gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled true
 gsettings set org.gnome.desktop.peripherals.mouse speed -0.4437
 
 
@@ -74,13 +75,15 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-typ
 
 ____ "Keyboard shortcuts"
 
-gsettings set org.gnome.desktop.wm.keybindings begin-resize "['<Alt>F1']"
 gsettings set org.gnome.desktop.wm.keybindings maximize "[]"
+gsettings set org.gnome.desktop.wm.keybindings maximize-horizontally "['<Primary><Super>Down']"
+gsettings set org.gnome.desktop.wm.keybindings maximize-vertically "['<Primary><Super>Up']"
 gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Super>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "['<Shift><Super>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
+gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Primary><Super>F11']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>Up']"
 gsettings set org.gnome.shell.keybindings open-application-menu "[]"
 gsettings set org.gnome.settings-daemon.plugins.media-keys next "['<Super>F12']"
@@ -141,7 +144,6 @@ ____ "Text editor"
 gsettings set org.gnome.gedit.preferences.editor auto-indent true
 gsettings set org.gnome.gedit.preferences.editor bracket-matching true
 gsettings set org.gnome.gedit.preferences.editor display-line-numbers true
-gsettings set org.gnome.gedit.preferences.editor display-overview-map false
 gsettings set org.gnome.gedit.preferences.editor display-right-margin true
 gsettings set org.gnome.gedit.preferences.editor highlight-current-line true
 gsettings set org.gnome.gedit.preferences.editor insert-spaces true
@@ -162,26 +164,32 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 40
 ____ "Fonts"
 
 
+gio trash $HOME/.config/fontconfig/conf.d 2> /dev/null || true
+mkdir -p $HOME/.config/fontconfig/conf.d/
+
+echo '<fontconfig><match target="font"><edit mode="assign" name="antialias"><bool>true</bool></edit></match><match target="font"><edit mode="assign" name="rgba"><const>rgb</const></edit></match><match target="font"><edit mode="assign" name="hinting"><bool>true</bool></edit></match><match target="font"><edit mode="assign" name="hintstyle"><const>hintfull</const></edit></match></fontconfig>' \
+    > $HOME/.config/fontconfig/conf.d/10-antialiasing.conf
+echo '<fontconfig><match target="font"><edit mode="assign" name="lcdfilter"><const>lcddefault</const></edit></match></fontconfig>' \
+    > $HOME/.config/fontconfig/conf.d/15-cleartype.conf
+
 if [[ -z "$ubuntu_session" ]]; then
     if [[ `fc-list "Cantarell"` ]]; then
+        echo '<fontconfig><alias><family>sans-serif</family><prefer><family>Cantarell</family></prefer></alias></fontconfig>' \
+            > $HOME/.config/fontconfig/conf.d/20-sans-cantarell.conf
+        echo '<fontconfig><match target="font"><test qual="any" name="family"><string>Cantarell</string></test><edit name="fontfeatures" mode="append"><string>tnum</string></edit></match></fontconfig>' \
+            > $HOME/.config/fontconfig/conf.d/25-cantarell-tnum.conf
+
         gsettings set org.gnome.desktop.interface font-name "Cantarell 10"
         gsettings set org.gnome.desktop.interface document-font-name "Cantarell 11"
     fi
 
     if [[ `fc-list "Source Code Pro"` ]]; then
+        echo '<fontconfig><alias><family>monospace</family><prefer><family>Source Code Pro</family></prefer></alias></fontconfig>' \
+            > $HOME/.config/fontconfig/conf.d/20-monospace-source-code.conf
+
         gsettings set org.gnome.desktop.interface monospace-font-name "Source Code Pro 10"
     fi
 fi
-
-
-gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing 'rgba'
-gsettings set org.gnome.settings-daemon.plugins.xsettings hinting 'full'
-
-mkdir -p $HOME/.config/fontconfig/conf.d/
-echo '<fontconfig><match target="font"><edit mode="assign" name="lcdfilter"><const>lcddefault</const></edit></match></fontconfig>' \
-    > $HOME/.config/fontconfig/conf.d/15-cleartype.conf
-echo '<fontconfig><match target="font"><test qual="any" name="family"><string>Cantarell</string></test><edit name="fontfeatures" mode="append"><string>tnum</string></edit></match></fontconfig>' \
-    > $HOME/.config/fontconfig/conf.d/25-cantarell-tnum.conf
 
 
 ____ "Desktop background"
@@ -234,17 +242,29 @@ dconf write /ca/desrt/dconf-editor/use-shortpaths true
 dconf write /ca/desrt/dconf-editor/window-height 600
 dconf write /ca/desrt/dconf-editor/window-width 800
 
-if [[ `gsettings writable org.flozz.nautilus-terminal default-show-terminal 2> /dev/null` ]]; then
-    gsettings set org.flozz.nautilus-terminal custom-command '/bin/bash'
-    gsettings set org.flozz.nautilus-terminal default-show-terminal false
-    gsettings set org.flozz.nautilus-terminal min-terminal-height 6
-    gsettings set org.flozz.nautilus-terminal use-custom-command true
-fi
+dconf write /org/flozz/nautilus-terminal/custom-command "'/bin/bash'"
+dconf write /org/flozz/nautilus-terminal/default-show-terminal false
+dconf write /org/flozz/nautilus-terminal/min-terminal-height 6
+dconf write /org/flozz/nautilus-terminal/use-custom-command true
 
 
 if [[ -n "$ubuntu_session" ]]; then
     exit
 fi
+
+
+____ "Sounds"
+
+gio trash $HOME/.local/share/sounds/__custom 2> /dev/null || true
+mkdir -p $HOME/.local/share/sounds/__custom
+
+echo -e "[Sound Theme]\nName=N\nInherits=freedesktop\nDirectories=." > $HOME/.local/share/sounds/__custom/index.theme
+ln -s /usr/share/sounds/gnome/default/alerts/sonar.ogg $HOME/.local/share/sounds/__custom/bell-terminal.ogg || true
+ln -s /usr/share/sounds/gnome/default/alerts/sonar.ogg $HOME/.local/share/sounds/__custom/bell-window-system.ogg || true
+
+gsettings set org.gnome.desktop.sound event-sounds true
+gsettings set org.gnome.desktop.sound input-feedback-sounds true
+gsettings set org.gnome.desktop.sound theme-name '__custom'
 
 
 ____ "GTK custom stylesheet"
@@ -262,8 +282,8 @@ shell_extension_url="https://codeload.github.com/TomaszGasior/gnome-shell-user-s
 shell_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gnome-shell.css"
 
 gio trash $HOME/.config/gnome-shell/gnome-shell.css 2> /dev/null || true
-gio trash $HOME/.local/share/gnome-shell/extensions/user-stylesheet@tomaszgasior.pl 2> /dev/null
-gnome-shell-extension-tool -d user-stylesheet@tomaszgasior.pl 2> /dev/null
+gio trash $HOME/.local/share/gnome-shell/extensions/user-stylesheet@tomaszgasior.pl 2> /dev/null || true
+gnome-shell-extension-tool -d user-stylesheet@tomaszgasior.pl 2> /dev/null || true
 
 mkdir -p $HOME/.config/gnome-shell
 $download_cmd $shell_stylesheet_url > $HOME/.config/gnome-shell/gnome-shell.css
@@ -271,4 +291,4 @@ $download_cmd $shell_stylesheet_url > $HOME/.config/gnome-shell/gnome-shell.css
 mkdir -p $HOME/.local/share/gnome-shell/extensions
 $download_cmd $shell_extension_url | tar --strip-components=1 -xzf - -C \
     $HOME/.local/share/gnome-shell/extensions gnome-shell-user-stylesheet-master/user-stylesheet@tomaszgasior.pl/
-gnome-shell-extension-tool -e user-stylesheet@tomaszgasior.pl
+gnome-shell-extension-tool -e user-stylesheet@tomaszgasior.pl 2> /dev/null || true
