@@ -256,6 +256,12 @@ dconf write /ca/desrt/dconf-editor/use-shortpaths true
 dconf write /ca/desrt/dconf-editor/window-height 600
 dconf write /ca/desrt/dconf-editor/window-width 800
 
+dconf write /org/gnome/gitg/preferences/commit/diff/context-lines 6
+dconf write /org/gnome/gitg/preferences/commit/message/enable-spell-checking true
+dconf write /org/gnome/gitg/preferences/commit/message/spell-checking-language "'en_US'"
+dconf write /org/gnome/gitg/preferences/interface/orientation "'horizontal'"
+dconf write /org/gnome/gitg/preferences/interface/style-scheme "'kate'"
+
 dconf write /org/flozz/nautilus-terminal/custom-command "'/bin/bash'"
 dconf write /org/flozz/nautilus-terminal/default-show-terminal false
 dconf write /org/flozz/nautilus-terminal/min-terminal-height 6
