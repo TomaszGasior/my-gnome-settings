@@ -18,6 +18,7 @@ gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.interface clock-show-weekday true
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.shell always-show-log-out true
+gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Terminal.desktop']"
 gsettings set org.gnome.shell.window-switcher current-workspace-only true
 gsettings set org.gnome.shell.window-switcher app-icon-mode 'both'
 
