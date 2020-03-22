@@ -160,6 +160,16 @@ gsettings set org.gnome.gedit.preferences.editor use-default-font true
 gsettings set org.gnome.gedit.state.window size '(720, 560)'
 
 
+____ "System monitor"
+
+gsettings set org.gnome.gnome-system-monitor window-state '(750, 650, 0, 0)'
+gsettings set org.gnome.gnome-system-monitor show-dependencies false
+gsettings set org.gnome.gnome-system-monitor show-whose-processes 'all'
+gsettings set org.gnome.gnome-system-monitor.disktreenew col-4-visible true
+gsettings set org.gnome.gnome-system-monitor.proctree sort-col 8
+gsettings set org.gnome.gnome-system-monitor.proctree sort-order 0
+
+
 ____ "Night light and geolocation"
 
 gsettings set org.gnome.system.location enabled true
