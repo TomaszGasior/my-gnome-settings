@@ -29,7 +29,6 @@ gsettings set org.gnome.desktop.wm.preferences action-middle-click-titlebar 'min
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:close'
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'
 gsettings set org.gnome.mutter auto-maximize false
-gsettings set org.gnome.mutter attach-modal-dialogs false
 gsettings set org.gnome.mutter center-new-windows false
 
 
