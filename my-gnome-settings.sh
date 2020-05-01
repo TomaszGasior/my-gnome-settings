@@ -41,7 +41,7 @@ gsettings set org.gnome.nautilus.list-view default-visible-columns "['name', 'si
 gsettings set org.gnome.nautilus.list-view use-tree-view true
 gsettings set org.gnome.nautilus.preferences executable-text-activation 'ask'
 gsettings set org.gnome.nautilus.preferences show-create-link true
-gsettings set org.gnome.nautilus.window-state initial-size '(990, 550)'
+gsettings set org.gnome.nautilus.window-state initial-size '(990, 550)' || true
 gsettings set org.gnome.nautilus.window-state sidebar-width 160
 
 if [[ `command -v xdg-user-dir` ]]; then
