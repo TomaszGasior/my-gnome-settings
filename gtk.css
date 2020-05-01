@@ -24,6 +24,10 @@ button.selection-menu {
     padding-top: 4px;
     padding-bottom: 4px;
 }
+.emoji-picker button.emoji-section {
+    padding-left: 0;
+    padding-right: 0;
+}
 entry, spinbutton {
     min-height: 28px;
 }
@@ -83,6 +87,11 @@ placessidebar row {
 placessidebar row revealer {
     padding-left: 12px;
     padding-right: 12px;
+}
+
+hdysqueezer hdyviewswitcher box {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 
