@@ -78,6 +78,17 @@ Gjs_ui_dateMenu_TodayButton.datemenu-today-button .date-label {
 }
 
 
+/* dialogs */
+
+.message-dialog-title, .message-dialog-title.leightweight {
+    font-size: 1.4em;
+}
+
+.end-session-dialog {
+    width: 35em;
+}
+
+
 /* dialogs, only for 3.34 and older */
 
 .headline, .mount-dialog-subject,
