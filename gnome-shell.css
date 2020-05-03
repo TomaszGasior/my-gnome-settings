@@ -55,6 +55,10 @@ Gjs_ui_dateMenu_TodayButton.datemenu-today-button .date-label {
     color: rgba(255, 255, 255, 0.8);
 }
 
+.app-folder-dialog-container {
+    height: 550px;
+}
+
 
 /* workspace switcher */
 
