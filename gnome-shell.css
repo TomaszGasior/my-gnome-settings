@@ -48,6 +48,10 @@ Gjs_ui_dateMenu_TodayButton.datemenu-today-button .date-label {
     text-shadow: 0 0 5px #000;
 }
 
+.window-caption {
+    font-size: 1em;
+}
+
 .list-search-result-title {
     color: #fff;
 }
