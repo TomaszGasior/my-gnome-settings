@@ -3,6 +3,9 @@
 stage {
     font-size: 10pt;
 }
+#lockDialogGroup {
+    font-size: 11pt;
+}
 
 
 /* panel */
