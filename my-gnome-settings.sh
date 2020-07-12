@@ -17,10 +17,20 @@ gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 gsettings set org.gnome.desktop.interface clock-show-weekday true || true
 gsettings set org.gnome.desktop.interface show-battery-percentage true
+gsettings set org.gnome.desktop.interface enable-hot-corners true || true
 gsettings set org.gnome.shell always-show-log-out true
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Terminal.desktop']"
 gsettings set org.gnome.shell.window-switcher current-workspace-only true
 gsettings set org.gnome.shell.window-switcher app-icon-mode 'both'
+
+if [[ -n "$ubuntu_session" ]]; then
+    gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
+    gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
+    gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'DEFAULT'
+
+    gsettings set org.gnome.shell.extensions.desktop-icons show-home false
+    gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
+fi
 
 
 ____ "Window manager"
@@ -49,6 +59,10 @@ if [[ `command -v xdg-user-dir` ]]; then
     else
         touch $templates_dir/New\ empty\ file
     fi
+fi
+
+if [[ -n "$ubuntu_session" ]]; then
+    echo "snap" >> $HOME/.hidden
 fi
 
 
@@ -107,6 +121,17 @@ gsettings set $custom_schema:$custom_path/custom2/ binding '<Primary><Shift>Esca
 gsettings set $custom_schema:$custom_path/custom2/ command 'gnome-system-monitor --show-processes-tab'
 gsettings set $custom_schema:$custom_path/custom2/ name 'System Monitor'
 
+
+if [[ -n "$ubuntu_session" ]]; then
+    gsettings set org.gnome.settings-daemon.plugins.media-keys logout '[]'
+
+    gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
+        "['$custom_path/custom0/', '$custom_path/custom1/', '$custom_path/custom2/', '$custom_path/custom9/']"
+
+    gsettings set $custom_schema:$custom_path/custom9/ binding '<Primary><Alt>Delete'
+    gsettings set $custom_schema:$custom_path/custom9/ command 'gnome-session-quit --power-off'
+    gsettings set $custom_schema:$custom_path/custom9/ name 'Shutdown dialog'
+fi
 
 ____ "Terminal"
 
@@ -243,11 +268,6 @@ elif [[ -d '/usr/share/icons/DMZ-White' ]]; then
     gsettings set org.gnome.desktop.interface cursor-theme 'DMZ-White'
 elif [[ -d '/usr/share/icons/dmz' ]]; then
     gsettings set org.gnome.desktop.interface cursor-theme 'dmz'
-fi
-
-if [[ -n "$ubuntu_session" ]]; then
-    dconf write /org/gnome/shell/extensions/dash-to-dock/dash-max-icon-size 32
-    dconf write /org/gnome/shell/extensions/dash-to-dock/transparency-mode "'DEFAULT'"
 fi
 
 
