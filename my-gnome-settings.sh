@@ -2,9 +2,8 @@
 set -euo pipefail
 
 ____() { echo -e "\e[1m### \e[7m$1\e[0m"; }
-
-ubuntu_session="" && [[ "${GNOME_SHELL_SESSION_MODE:-}" = "ubuntu" ]] && ubuntu_session="yes"
-download_cmd="wget -q -O -" && [[ `command -v curl` ]] && download_cmd="curl -s"
+is_ubuntu_session() { [[ "${GNOME_SHELL_SESSION_MODE:-}" = "ubuntu" ]] || return 1; }
+download_cmd() { ([[ `command -v curl` ]] && echo "curl -s") || echo "wget -q -O -"; }
 
 dconf_backup_file="$HOME/.config/dconf/dconf-dump-`date -Iseconds`"
 dconf dump / > $dconf_backup_file
@@ -23,7 +22,7 @@ gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'fir
 gsettings set org.gnome.shell.window-switcher current-workspace-only true
 gsettings set org.gnome.shell.window-switcher app-icon-mode 'both'
 
-if [[ -n "$ubuntu_session" ]]; then
+if is_ubuntu_session; then
     gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
     gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
     gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'DEFAULT'
@@ -61,7 +60,7 @@ if [[ `command -v xdg-user-dir` ]]; then
     fi
 fi
 
-if [[ -n "$ubuntu_session" ]]; then
+if is_ubuntu_session; then
     echo "snap" >> $HOME/.hidden
 fi
 
@@ -122,7 +121,7 @@ gsettings set $custom_schema:$custom_path/custom2/ command 'gnome-system-monitor
 gsettings set $custom_schema:$custom_path/custom2/ name 'System Monitor'
 
 
-if [[ -n "$ubuntu_session" ]]; then
+if is_ubuntu_session; then
     gsettings set org.gnome.settings-daemon.plugins.media-keys logout '[]'
 
     gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
@@ -153,7 +152,7 @@ gsettings set $profile_schema:$profile_path scrollbar-policy 'never'
 gsettings set $profile_schema:$profile_path use-system-font true
 gsettings set $profile_schema:$profile_path word-char-exceptions "''"
 
-if [[ -n "$ubuntu_session" ]]; then
+if is_ubuntu_session; then
     gsettings set $profile_schema:$profile_path background-color 'rgb(33,33,33)'
     gsettings set $profile_schema:$profile_path foreground-color 'rgb(247,247,247)'
     gsettings set $profile_schema:$profile_path use-theme-colors false
@@ -203,7 +202,7 @@ echo '<fontconfig><match target="font"><edit mode="assign" name="antialias"><boo
 echo '<fontconfig><match target="font"><edit mode="assign" name="lcdfilter"><const>lcddefault</const></edit></match></fontconfig>' \
     > $HOME/.config/fontconfig/conf.d/15-cleartype.conf
 
-if [[ -z "$ubuntu_session" ]]; then
+if ! is_ubuntu_session; then
     if [[ `fc-list "Cantarell"` ]]; then
         echo '<fontconfig><alias><family>sans-serif</family><prefer><family>Cantarell</family></prefer></alias></fontconfig>' \
             > $HOME/.config/fontconfig/conf.d/20-sans-cantarell.conf
@@ -291,7 +290,7 @@ dconf write /org/flozz/nautilus-terminal/min-terminal-height 6
 dconf write /org/flozz/nautilus-terminal/use-custom-command true
 
 
-if [[ -n "$ubuntu_session" ]]; then
+if is_ubuntu_session; then
     exit
 fi
 
@@ -316,7 +315,7 @@ gtk_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-sett
 
 mkdir -p $HOME/.config/gtk-3.0
 gio trash $HOME/.config/gtk-3.0/gtk.css 2> /dev/null || true
-$download_cmd $gtk_stylesheet_url > $HOME/.config/gtk-3.0/gtk.css
+`download_cmd` $gtk_stylesheet_url > $HOME/.config/gtk-3.0/gtk.css
 
 
 ____ "Shell custom stylesheet"
@@ -329,9 +328,9 @@ gio trash $HOME/.local/share/gnome-shell/extensions/user-stylesheet@tomaszgasior
 gnome-shell-extension-tool -d user-stylesheet@tomaszgasior.pl 2> /dev/null || true
 
 mkdir -p $HOME/.config/gnome-shell
-$download_cmd $shell_stylesheet_url > $HOME/.config/gnome-shell/gnome-shell.css
+`download_cmd` $shell_stylesheet_url > $HOME/.config/gnome-shell/gnome-shell.css
 
 mkdir -p $HOME/.local/share/gnome-shell/extensions
-$download_cmd $shell_extension_url | tar --strip-components=1 -xzf - -C \
+`download_cmd` $shell_extension_url | tar --strip-components=1 -xzf - -C \
     $HOME/.local/share/gnome-shell/extensions gnome-shell-user-stylesheet-master/user-stylesheet@tomaszgasior.pl/
 gnome-shell-extension-tool -e user-stylesheet@tomaszgasior.pl 2> /dev/null || true
