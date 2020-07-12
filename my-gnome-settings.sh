@@ -24,11 +24,11 @@ gsettings set org.gnome.shell.window-switcher app-icon-mode 'both'
 
 if is_ubuntu_session; then
     gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
-    gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
+    gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false || true
     gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'DEFAULT'
 
-    gsettings set org.gnome.shell.extensions.desktop-icons show-home false
-    gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
+    gsettings set org.gnome.shell.extensions.desktop-icons show-home false || true
+    gsettings set org.gnome.shell.extensions.desktop-icons show-trash false || true
 fi
 
 
@@ -175,12 +175,14 @@ gsettings set org.gnome.gedit.state.window size '(720, 560)'
 
 ____ "System monitor"
 
-gsettings set org.gnome.gnome-system-monitor window-state '(750, 650, 0, 0)'
-gsettings set org.gnome.gnome-system-monitor show-dependencies false
-gsettings set org.gnome.gnome-system-monitor show-whose-processes 'all'
-gsettings set org.gnome.gnome-system-monitor.disktreenew col-4-visible true
-gsettings set org.gnome.gnome-system-monitor.proctree sort-col 8
-gsettings set org.gnome.gnome-system-monitor.proctree sort-order 0
+if [[ `command -v gnome-system-monitor` != '/snap/bin/gnome-system-monitor' ]]; then
+    gsettings set org.gnome.gnome-system-monitor window-state '(750, 650, 0, 0)'
+    gsettings set org.gnome.gnome-system-monitor show-dependencies false
+    gsettings set org.gnome.gnome-system-monitor show-whose-processes 'all'
+    gsettings set org.gnome.gnome-system-monitor.disktreenew col-4-visible true
+    gsettings set org.gnome.gnome-system-monitor.proctree sort-col 8
+    gsettings set org.gnome.gnome-system-monitor.proctree sort-order 0
+fi
 
 
 ____ "Night light and geolocation"
