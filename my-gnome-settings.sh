@@ -25,7 +25,6 @@ gsettings set org.gnome.shell.window-switcher app-icon-mode 'both'
 
 ____ "Window manager"
 
-gsettings set org.gnome.desktop.wm.preferences action-middle-click-titlebar 'minimize'
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:close'
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'
 gsettings set org.gnome.mutter auto-maximize false
@@ -34,12 +33,10 @@ gsettings set org.gnome.mutter center-new-windows false
 
 ____ "File manager"
 
-gsettings set org.gnome.desktop.media-handling automount false
 gsettings set org.gnome.nautilus.icon-view default-zoom-level 'standard'
 gsettings set org.gnome.nautilus.list-view default-zoom-level 'small'
 gsettings set org.gnome.nautilus.list-view default-visible-columns "['name', 'size', 'type', 'date_modified']"
 gsettings set org.gnome.nautilus.list-view use-tree-view true
-gsettings set org.gnome.nautilus.preferences executable-text-activation 'ask'
 gsettings set org.gnome.nautilus.preferences show-create-link true
 gsettings set org.gnome.nautilus.window-state initial-size '(990, 550)' || true
 gsettings set org.gnome.nautilus.window-state sidebar-width 160
