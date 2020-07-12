@@ -333,4 +333,7 @@ mkdir -p $HOME/.config/gnome-shell
 mkdir -p $HOME/.local/share/gnome-shell/extensions
 `download_cmd` $shell_extension_url | tar --strip-components=1 -xzf - -C \
     $HOME/.local/share/gnome-shell/extensions gnome-shell-user-stylesheet-master/user-stylesheet@tomaszgasior.pl/
+
 gnome-shell-extension-tool -e user-stylesheet@tomaszgasior.pl 2> /dev/null || true
+dbus-send --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval \
+    string:"Main.setThemeStylesheet('$HOME/.config/gnome-shell/gnome-shell.css'); Main.loadTheme()"
