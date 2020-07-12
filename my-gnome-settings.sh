@@ -96,27 +96,19 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys stop "['<Super>F10']"
 ____ "Custom keyboard shortcuts"
 
 custom_path="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+custom_schema="org.gnome.settings-daemon.plugins.media-keys.custom-keybinding"
 
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
     "['$custom_path/custom0/', '$custom_path/custom1/', '$custom_path/custom2/']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$custom_path/custom0/ \
-    binding '<Super>t'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$custom_path/custom0/ \
-    command 'gnome-terminal'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$custom_path/custom0/ \
-    name 'Terminal'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$custom_path/custom1/ \
-    binding '<Super>e'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$custom_path/custom1/ \
-    command 'nautilus --new-window'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$custom_path/custom1/ \
-    name 'Nautilus'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$custom_path/custom2/ \
-    binding '<Primary><Shift>Escape'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$custom_path/custom2/ \
-    command 'gnome-system-monitor --show-processes-tab'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:$custom_path/custom2/ \
-    name 'System Monitor'
+gsettings set $custom_schema:$custom_path/custom0/ binding '<Super>t'
+gsettings set $custom_schema:$custom_path/custom0/ command 'gnome-terminal'
+gsettings set $custom_schema:$custom_path/custom0/ name 'Terminal'
+gsettings set $custom_schema:$custom_path/custom1/ binding '<Super>e'
+gsettings set $custom_schema:$custom_path/custom1/ command 'nautilus --new-window'
+gsettings set $custom_schema:$custom_path/custom1/ name 'Nautilus'
+gsettings set $custom_schema:$custom_path/custom2/ binding '<Primary><Shift>Escape'
+gsettings set $custom_schema:$custom_path/custom2/ command 'gnome-system-monitor --show-processes-tab'
+gsettings set $custom_schema:$custom_path/custom2/ name 'System Monitor'
 
 
 ____ "Terminal"
@@ -126,22 +118,23 @@ gsettings set org.gnome.Terminal.Legacy.Settings theme-variant 'dark'
 gsettings set org.gnome.Terminal.ProfilesList list "['b1dcc9dd-5262-4d8d-a863-c897e6d979b9']"
 gsettings set org.gnome.Terminal.ProfilesList default 'b1dcc9dd-5262-4d8d-a863-c897e6d979b9'
 
+profile_schema="org.gnome.Terminal.Legacy.Profile"
 profile_path="/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/"
 
-gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path bold-is-bright true
-gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path cursor-blink-mode 'on'
-gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path cursor-shape 'ibeam'
-gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path default-size-columns 100
-gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path default-size-rows 30
-gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path scrollback-unlimited true
-gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path scrollbar-policy 'never'
-gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path use-system-font true
-gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path word-char-exceptions "''"
+gsettings set $profile_schema:$profile_path bold-is-bright true
+gsettings set $profile_schema:$profile_path cursor-blink-mode 'on'
+gsettings set $profile_schema:$profile_path cursor-shape 'ibeam'
+gsettings set $profile_schema:$profile_path default-size-columns 100
+gsettings set $profile_schema:$profile_path default-size-rows 30
+gsettings set $profile_schema:$profile_path scrollback-unlimited true
+gsettings set $profile_schema:$profile_path scrollbar-policy 'never'
+gsettings set $profile_schema:$profile_path use-system-font true
+gsettings set $profile_schema:$profile_path word-char-exceptions "''"
 
 if [[ -n "$ubuntu_session" ]]; then
-    gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path background-color 'rgb(33,33,33)'
-    gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path foreground-color 'rgb(247,247,247)'
-    gsettings set org.gnome.Terminal.Legacy.Profile:$profile_path use-theme-colors false
+    gsettings set $profile_schema:$profile_path background-color 'rgb(33,33,33)'
+    gsettings set $profile_schema:$profile_path foreground-color 'rgb(247,247,247)'
+    gsettings set $profile_schema:$profile_path use-theme-colors false
 fi
 
 
