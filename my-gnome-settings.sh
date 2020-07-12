@@ -259,7 +259,7 @@ dconf write /org/gtk/settings/debug/inspector-warning false
 
 ____ "Various desktop settings"
 
-gsettings set org.gnome.desktop.a11y always-show-text-caret false
+gsettings set org.gnome.desktop.a11y always-show-text-caret true
 gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
 
 if [[ -d '/usr/share/icons/Vanilla-DMZ' ]]; then
