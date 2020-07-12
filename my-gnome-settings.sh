@@ -8,14 +8,14 @@ download_cmd="wget -q -O -" && [[ `command -v curl` ]] && download_cmd="curl -s"
 
 dconf_backup_file="$HOME/.config/dconf/dconf-dump-`date -Iseconds`"
 dconf dump / > $dconf_backup_file
-gio trash $dconf_backup_file 2> /dev/null
+gio trash $dconf_backup_file 2> /dev/null || true
 
 
 ____ "Shell"
 
 gsettings set org.gnome.desktop.interface clock-show-date true
 gsettings set org.gnome.desktop.interface clock-show-seconds true
-gsettings set org.gnome.desktop.interface clock-show-weekday true
+gsettings set org.gnome.desktop.interface clock-show-weekday true || true
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.shell always-show-log-out true
 gsettings set org.gnome.shell favorite-apps "['org.gnome.Nautilus.desktop', 'firefox.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Terminal.desktop']"
@@ -121,7 +121,7 @@ gsettings set org.gnome.Terminal.ProfilesList default 'b1dcc9dd-5262-4d8d-a863-c
 profile_schema="org.gnome.Terminal.Legacy.Profile"
 profile_path="/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/"
 
-gsettings set $profile_schema:$profile_path bold-is-bright true
+gsettings set $profile_schema:$profile_path bold-is-bright true || true
 gsettings set $profile_schema:$profile_path cursor-blink-mode 'on'
 gsettings set $profile_schema:$profile_path cursor-shape 'ibeam'
 gsettings set $profile_schema:$profile_path default-size-columns 100
