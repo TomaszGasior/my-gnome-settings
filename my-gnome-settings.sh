@@ -322,7 +322,7 @@ gio trash $HOME/.config/gtk-3.0/gtk.css 2> /dev/null || true
 
 ____ "Shell custom stylesheet"
 
-shell_extension_url="https://codeload.github.com/TomaszGasior/gnome-shell-user-stylesheet/tar.gz/master"
+shell_extension_url="https://codeload.github.com/TomaszGasior/gnome-shell-user-stylesheet/tar.gz/ab25507983"
 shell_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gnome-shell.css"
 
 gio trash $HOME/.config/gnome-shell/gnome-shell.css 2> /dev/null || true
@@ -334,7 +334,7 @@ mkdir -p $HOME/.config/gnome-shell
 
 mkdir -p $HOME/.local/share/gnome-shell/extensions
 `download_cmd` $shell_extension_url | tar --strip-components=1 -xzf - -C \
-    $HOME/.local/share/gnome-shell/extensions gnome-shell-user-stylesheet-master/user-stylesheet@tomaszgasior.pl/
+    $HOME/.local/share/gnome-shell/extensions gnome-shell-user-stylesheet-ab25507983/user-stylesheet@tomaszgasior.pl/
 
 gnome-shell-extension-tool -e user-stylesheet@tomaszgasior.pl 2> /dev/null || true
 dbus-send --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval \
