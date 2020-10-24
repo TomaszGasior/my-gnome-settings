@@ -231,7 +231,7 @@ bg_images=(
     "/usr/share/backgrounds/fedora-workstation/dutch_skies.jpg"
     "/usr/share/backgrounds/ubuntu-default-greyscale-wallpaper.png"
     "/usr/share/images/desktop-base/desktop-background"
-    "/usr/share/backgrounds/gnome/Fabric.jpg"
+    "/usr/share/backgrounds/gnome/Symbolics-1.jpg"
 )
 for bg_file in "${bg_images[@]}"; do
     if [[ -f "$bg_file" ]]; then
