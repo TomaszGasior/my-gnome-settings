@@ -329,20 +329,24 @@ gio trash $HOME/.config/gtk-3.0/gtk.css 2> /dev/null || true
 
 ____ "Shell custom stylesheet"
 
-shell_extension_url="https://codeload.github.com/TomaszGasior/gnome-shell-user-stylesheet/tar.gz/ab25507983"
+shell_extension_url="https://codeload.github.com/TomaszGasior/gnome-shell-user-stylesheet/tar.gz/9b7b4904b6"
 shell_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gnome-shell.css"
+shell_extension_name="user-stylesheet@tomaszgasior.pl"
 
 gio trash $HOME/.config/gnome-shell/gnome-shell.css 2> /dev/null || true
-gio trash $HOME/.local/share/gnome-shell/extensions/user-stylesheet@tomaszgasior.pl 2> /dev/null || true
-gnome-shell-extension-tool -d user-stylesheet@tomaszgasior.pl 2> /dev/null || true
+gio trash $HOME/.local/share/gnome-shell/extensions/$shell_extension_name 2> /dev/null || true
+gnome-shell-extension-tool -d $shell_extension_name 2> /dev/null || true
 
 mkdir -p $HOME/.config/gnome-shell
 `download_cmd` $shell_stylesheet_url > $HOME/.config/gnome-shell/gnome-shell.css
 
-mkdir -p $HOME/.local/share/gnome-shell/extensions
+mkdir -p $HOME/.local/share/gnome-shell/extensions/$shell_extension_name
 `download_cmd` $shell_extension_url | tar --strip-components=1 -xzf - -C \
-    $HOME/.local/share/gnome-shell/extensions gnome-shell-user-stylesheet-ab25507983/user-stylesheet@tomaszgasior.pl/
+    $HOME/.local/share/gnome-shell/extensions/$shell_extension_name gnome-shell-user-stylesheet-9b7b4904b6/
 
-gnome-shell-extension-tool -e user-stylesheet@tomaszgasior.pl 2> /dev/null || true
+gnome-shell-extension-tool -e $shell_extension_name 2> /dev/null || true
+
 dbus-send --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval \
     string:"Main.setThemeStylesheet('$HOME/.config/gnome-shell/gnome-shell.css'); Main.loadTheme()"
+dbus-send --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval \
+    string:"global.stage.get_child_at_index(0).set_style('font-size: 10pt')"
