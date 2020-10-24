@@ -208,6 +208,8 @@ if ! is_ubuntu_session; then
     if [[ `fc-list "Cantarell"` ]]; then
         echo '<fontconfig><alias><family>sans-serif</family><prefer><family>Cantarell</family></prefer></alias></fontconfig>' \
             > $HOME/.config/fontconfig/conf.d/20-sans-cantarell.conf
+        echo '<fontconfig><alias><family>-apple-system</family><prefer><family>Cantarell</family></prefer></alias></fontconfig>' \
+            > $HOME/.config/fontconfig/conf.d/21-system-ui.conf
         echo '<fontconfig><match target="font"><test qual="any" name="family"><string>Cantarell</string></test><edit name="fontfeatures" mode="append"><string>tnum</string></edit></match></fontconfig>' \
             > $HOME/.config/fontconfig/conf.d/25-cantarell-tnum.conf
 
@@ -221,6 +223,11 @@ if ! is_ubuntu_session; then
 
         gsettings set org.gnome.desktop.interface monospace-font-name "Source Code Pro 10"
     fi
+fi
+
+if is_ubuntu_session; then
+    echo '<fontconfig><alias><family>-apple-system</family><prefer><family>Ubuntu</family></prefer></alias></fontconfig>' \
+        > $HOME/.config/fontconfig/conf.d/21-system-ui.conf
 fi
 
 
