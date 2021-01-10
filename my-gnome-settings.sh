@@ -261,7 +261,6 @@ gsettings set org.gtk.Settings.FileChooser startup-mode 'cwd'
 gsettings set org.gtk.Settings.FileChooser window-position '(0, 0)'
 gsettings set org.gtk.Settings.FileChooser window-size '(750, 550)'
 
-dconf write /org/gtk/settings/debug/enable-inspector-keybinding true
 dconf write /org/gtk/settings/debug/inspector-warning false
 
 
