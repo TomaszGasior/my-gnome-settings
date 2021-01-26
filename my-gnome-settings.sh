@@ -69,7 +69,7 @@ ____ "Mouse and touchpad"
 
 gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled false
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
-gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false
 gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled true
 gsettings set org.gnome.desktop.peripherals.mouse speed -0.4437
 
