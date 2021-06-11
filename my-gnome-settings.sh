@@ -319,7 +319,7 @@ gsettings set org.gnome.desktop.sound theme-name '__custom'
 
 ____ "GTK custom stylesheet"
 
-gtk_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gtk.css"
+gtk_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gtk-3.css"
 
 mkdir -p $HOME/.config/gtk-3.0
 gio trash $HOME/.config/gtk-3.0/gtk.css 2> /dev/null || true
