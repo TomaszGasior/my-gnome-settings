@@ -89,11 +89,6 @@ placessidebar row revealer {
     padding-right: 12px;
 }
 
-hdyviewswitcher box {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
 
 /* smaller titlebars */
 
@@ -105,6 +100,11 @@ button.titlebutton {
     min-width: 16px;
     margin: 0;
     padding: 0;
+}
+
+headerbar hdyviewswitcher box, headerbar viewswitchertitle box, headerbar viewswitcher box {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 headerbar switch {
