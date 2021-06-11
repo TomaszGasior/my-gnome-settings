@@ -10,4 +10,5 @@ function sync_files() {
 }
 
 sync_files gtk-3.css ~/.config/gtk-3.0/gtk.css
+sync_files gtk-4.css ~/.config/gtk-4.0/gtk.css
 sync_files gnome-shell.css ~/.config/gnome-shell/gnome-shell.css

@@ -319,11 +319,16 @@ gsettings set org.gnome.desktop.sound theme-name '__custom'
 
 ____ "GTK custom stylesheet"
 
-gtk_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gtk-3.css"
+gtk3_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gtk-3.css"
+gtk4_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gtk-4.css"
 
 mkdir -p $HOME/.config/gtk-3.0
 gio trash $HOME/.config/gtk-3.0/gtk.css 2> /dev/null || true
-`download_cmd` $gtk_stylesheet_url > $HOME/.config/gtk-3.0/gtk.css
+`download_cmd` $gtk3_stylesheet_url > $HOME/.config/gtk-3.0/gtk.css
+
+mkdir -p $HOME/.config/gtk-4.0
+gio trash $HOME/.config/gtk-4.0/gtk.css 2> /dev/null || true
+`download_cmd` $gtk4_stylesheet_url > $HOME/.config/gtk-4.0/gtk.css
 
 
 ____ "Shell custom stylesheet"
