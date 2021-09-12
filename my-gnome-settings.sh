@@ -28,6 +28,9 @@ if is_ubuntu_session; then
 
     gsettings set org.gnome.shell.extensions.desktop-icons show-home false || true
     gsettings set org.gnome.shell.extensions.desktop-icons show-trash false || true
+
+    gsettings set org.gnome.shell.extensions.ding show-home false || true
+    gsettings set org.gnome.shell.extensions.ding show-trash false || true
 fi
 
 
