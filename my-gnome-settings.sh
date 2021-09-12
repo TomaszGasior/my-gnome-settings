@@ -97,10 +97,10 @@ gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Primary><Su
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>Up']"
 gsettings set org.gnome.shell.keybindings open-application-menu "[]"
 gsettings set org.gnome.settings-daemon.plugins.media-keys next "['<Super>F12']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys pause '[]'
-gsettings set org.gnome.settings-daemon.plugins.media-keys play "['<Super>F9']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['<Super>F11']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys stop "['<Super>F10']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys pause "[]"
+gsettings set org.gnome.settings-daemon.plugins.media-keys play "['<Super>F11']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['<Super>F10']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys stop "[]"
 
 
 ____ "Custom keyboard shortcuts"
