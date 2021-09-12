@@ -199,11 +199,6 @@ ____ "Fonts"
 gio trash $HOME/.config/fontconfig/conf.d 2> /dev/null || true
 mkdir -p $HOME/.config/fontconfig/conf.d/
 
-echo '<fontconfig><match target="font"><edit mode="assign" name="antialias"><bool>true</bool></edit></match><match target="font"><edit mode="assign" name="rgba"><const>rgb</const></edit></match><match target="font"><edit mode="assign" name="hinting"><bool>true</bool></edit></match><match target="font"><edit mode="assign" name="hintstyle"><const>hintfull</const></edit></match></fontconfig>' \
-    > $HOME/.config/fontconfig/conf.d/10-antialiasing.conf
-echo '<fontconfig><match target="font"><edit mode="assign" name="lcdfilter"><const>lcddefault</const></edit></match></fontconfig>' \
-    > $HOME/.config/fontconfig/conf.d/15-cleartype.conf
-
 if ! is_ubuntu_session; then
     if [[ `fc-list "Cantarell"` ]]; then
         echo '<fontconfig><alias><family>sans-serif</family><prefer><family>Cantarell</family></prefer></alias></fontconfig>' \
