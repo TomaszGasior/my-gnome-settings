@@ -154,6 +154,11 @@ gsettings set $profile_schema:$profile_path scrollbar-policy 'never'
 gsettings set $profile_schema:$profile_path use-system-font true
 gsettings set $profile_schema:$profile_path word-char-exceptions "''"
 
+keybindings_schema="org.gnome.Terminal.Legacy.Keybindings"
+keybindings_path="/org/gnome/terminal/legacy/keybindings/"
+
+gsettings set $keybindings_schema:$keybindings_path set-terminal-title '<Control><Shift>a' || true
+
 if is_ubuntu_session; then
     gsettings set $profile_schema:$profile_path background-color 'rgb(33,33,33)'
     gsettings set $profile_schema:$profile_path foreground-color 'rgb(247,247,247)'
