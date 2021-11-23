@@ -88,21 +88,12 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-typ
 ____ "Keyboard shortcuts"
 
 gsettings set org.gnome.desktop.wm.keybindings maximize "[]"
-gsettings set org.gnome.desktop.wm.keybindings maximize-horizontally "['<Primary><Super>Down']"
-gsettings set org.gnome.desktop.wm.keybindings maximize-vertically "['<Primary><Super>Up']"
-gsettings set org.gnome.desktop.wm.keybindings panel-main-menu "[]"
 gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Super>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "['<Shift><Super>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Primary><Super>F11']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>Up']"
-gsettings set org.gnome.shell.keybindings open-application-menu "[]"
-gsettings set org.gnome.settings-daemon.plugins.media-keys next "['<Super>F12']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys pause "[]"
-gsettings set org.gnome.settings-daemon.plugins.media-keys play "['<Super>F11']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys previous "['<Super>F10']"
-gsettings set org.gnome.settings-daemon.plugins.media-keys stop "[]"
 
 
 ____ "Custom keyboard shortcuts"
