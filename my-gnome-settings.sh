@@ -208,9 +208,6 @@ if ! is_ubuntu_session; then
             > $HOME/.config/fontconfig/conf.d/21-system-ui.conf
         echo '<fontconfig><match target="font"><test qual="any" name="family"><string>Cantarell</string></test><edit name="fontfeatures" mode="append"><string>tnum</string></edit></match></fontconfig>' \
             > $HOME/.config/fontconfig/conf.d/25-cantarell-tnum.conf
-
-        gsettings set org.gnome.desktop.interface font-name "Cantarell 10"
-        gsettings set org.gnome.desktop.interface document-font-name "Cantarell 11"
     fi
 
     if [[ `fc-list "Source Code Pro"` ]]; then
@@ -348,5 +345,3 @@ gnome-shell-extension-tool -e $shell_extension_name 2> /dev/null || true
 
 dbus-send --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval \
     string:"Main.setThemeStylesheet('$HOME/.config/gnome-shell/gnome-shell.css'); Main.loadTheme()"
-dbus-send --type=method_call --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval \
-    string:"global.stage.get_child_at_index(0).set_style('font-size: 10pt')"

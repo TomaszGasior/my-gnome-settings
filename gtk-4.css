@@ -1,112 +1,3 @@
-/* smaller widgets */
-
-button {
-    min-height: 20px;
-}
-button:not(.text-button):not(.combo) {
-    padding-left: 6px;
-    padding-right: 6px;
-}
-button.image-button:not(.text-button) {
-    padding-left: 2px;
-    padding-right: 2px;
-}
-button.sidebar-button.image-button {
-    min-width: 20px;
-    min-height: 20px;
-    padding: 0;
-}
-button.slider-button:not(.text-button) {
-    padding-left: 0;
-    padding-right: 0;
-}
-button.selection-menu {
-    padding-top: 4px;
-    padding-bottom: 4px;
-}
-.emoji-picker button.emoji-section {
-    padding-left: 0;
-    padding-right: 0;
-}
-entry, spinbutton {
-    min-height: 28px;
-}
-stackswitcher > button.text-button:not(.circular) {
-    min-width: 65px;
-}
-.stack-switcher > button > image {
-    padding: 0 4px;
-}
-toolbar.inline-toolbar button.image-button {
-    padding-top: 4px;
-    padding-bottom: 4px;
-}
-treeview header button {
-    min-height: 27px;
-}
-
-notebook tabs {
-    padding: 0;
-}
-notebook tab {
-    margin: 0;
-    min-height: 25px;
-}
-notebook tab button.flat {
-    margin-top: 1px;
-    margin-bottom: 1px;
-}
-notebook > header > tabs > tab > box > button.flat:not(.text-button):not(.combo) {
-    padding-left: 1px;
-    padding-right: 1px;
-}
-
-tooltip * {
-    padding: 1px 2px;
-}
-
-placessidebar row {
-    min-height: 30px;
-}
-placessidebar row revealer {
-    padding-left: 12px;
-    padding-right: 12px;
-}
-
-
-/* smaller titlebars */
-
-.titlebar, headerbar {
-    min-height: 34px;
-}
-windowcontrols button {
-	min-height: 15px;
-}
-
-headerbar viewswitcher box {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-headerbar switch {
-    margin-top: 7px;
-    margin-bottom: 7px;
-}
-
-.default-decoration {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-.maximized .default-decoration,
-.tiled .default-decoration {
-    min-height: 28px;
-}
-.maximized .default-decoration .titlebutton,
-.tiled .default-decoration .titlebutton {
-    min-height: 22px;
-}
-
-
 /* better readability */
 
 popover.background separator.horizontal {
@@ -120,11 +11,6 @@ treeview {
 
 .dim-label, .titlebar.subtitle {
     opacity: 0.8;
-}
-
-modelbutton.flat:hover {
-    color: @theme_selected_fg_color;
-    background-color: @theme_selected_bg_color;
 }
 
 progressbar.horizontal trough,
@@ -142,17 +28,9 @@ levelbar trough {
 
 /* custom changes */
 
-.titlebar .title {
-    font-size: 1.04em;
-}
-
 filechooser #pathbarbox {
     background: none;
     border-bottom: 1px solid @unfocused_borders;
-}
-
-.titlebar > .right, .titlebar > headerbar > .right {
-    margin-left: -6px;
 }
 
 menubar popover.menu contents, menubar popover.menu modelbutton {

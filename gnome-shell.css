@@ -11,49 +11,13 @@
     icon-size: 1px;
     padding-right: 0;
 }
-#panelLeft StBin:last-child > .panel-button {
-    -natural-hpadding: 4px;
-}
 
 
 /* notification area */
 
-.notification-banner {
-    font-size: 1em;
-}
-
 .message-media-control {
     padding-left: 14px;
     padding-right: 14px;
-}
-
-.datemenu-today-button .date-label {
-    font-weight: 400;
-}
-Gjs_ui_dateMenu_TodayButton.datemenu-today-button .date-label {
-    font-weight: 1000;
-}
-
-
-/* overview and search */
-
-#overview {
-    text-shadow: 0 0 10px #000;
-}
-
-.window-caption {
-    font-size: 1em;
-}
-
-.list-search-result-title {
-    color: #fff;
-}
-.list-search-result-description {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.app-folder-dialog-container {
-    height: 550px;
 }
 
 
@@ -66,42 +30,6 @@ Gjs_ui_dateMenu_TodayButton.datemenu-today-button .date-label {
 
 /* menus */
 
-.popup-menu .popup-menu-item {
-    spacing: 6px;
-}
-.popup-sub-menu .popup-menu-item > :first-child:ltr {
-    padding-left: 14px;
-    margin-left: 1.09em;
-}
-
 .popup-separator-menu-item, .popup-separator-menu-item-separator {
     margin: 0;
-}
-
-
-/* dialogs */
-
-.message-dialog-title, .message-dialog-title.leightweight {
-    font-size: 1.4em;
-}
-
-.end-session-dialog {
-    width: 38em;
-}
-
-
-/* dialogs, only for 3.34 and older */
-
-.headline, .mount-dialog-subject,
-.end-session-dialog-subject, .prompt-dialog-info-label {
-    font-size: 1.35em;
-    color: inherit;
-    font-weight: normal;
-}
-.end-session-dialog-subject {
-    margin-bottom: 13px;
-}
-.modal-dialog .run-dialog-label {
-    font-weight: normal;
-    font-size: 1em;
 }
