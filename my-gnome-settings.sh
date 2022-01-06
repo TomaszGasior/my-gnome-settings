@@ -95,9 +95,6 @@ gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift
 gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Primary><Super>F11']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>Up']"
 
-gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-up "['<Super>XF86AudioRaiseVolume']" || true
-gsettings set org.gnome.settings-daemon.plugins.media-keys screen-brightness-down "['<Super>XF86AudioLowerVolume']" || true
-
 
 ____ "Custom keyboard shortcuts"
 
