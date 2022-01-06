@@ -262,14 +262,6 @@ ____ "Various desktop settings"
 gsettings set org.gnome.desktop.a11y always-show-text-caret true
 gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
 
-if [[ -d '/usr/share/icons/Vanilla-DMZ' ]]; then
-    gsettings set org.gnome.desktop.interface cursor-theme 'Vanilla-DMZ'
-elif [[ -d '/usr/share/icons/DMZ-White' ]]; then
-    gsettings set org.gnome.desktop.interface cursor-theme 'DMZ-White'
-elif [[ -d '/usr/share/icons/dmz' ]]; then
-    gsettings set org.gnome.desktop.interface cursor-theme 'dmz'
-fi
-
 
 ____ "Optional applications"
 
