@@ -102,16 +102,18 @@ custom_schema="org.gnome.settings-daemon.plugins.media-keys.custom-keybinding"
 
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
     "['$custom_path/custom0/', '$custom_path/custom1/', '$custom_path/custom2/']"
+
 gsettings set $custom_schema:$custom_path/custom0/ binding '<Super>t'
 gsettings set $custom_schema:$custom_path/custom0/ command 'gnome-terminal'
 gsettings set $custom_schema:$custom_path/custom0/ name 'Terminal'
+
 gsettings set $custom_schema:$custom_path/custom1/ binding '<Super>e'
 gsettings set $custom_schema:$custom_path/custom1/ command 'nautilus --new-window'
 gsettings set $custom_schema:$custom_path/custom1/ name 'Nautilus'
+
 gsettings set $custom_schema:$custom_path/custom2/ binding '<Primary><Shift>Escape'
 gsettings set $custom_schema:$custom_path/custom2/ command 'gnome-system-monitor --show-processes-tab'
 gsettings set $custom_schema:$custom_path/custom2/ name 'System Monitor'
-
 
 if is_ubuntu_session; then
     gsettings set org.gnome.settings-daemon.plugins.media-keys logout '[]'
