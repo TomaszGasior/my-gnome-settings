@@ -196,7 +196,6 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature 40
 
 ____ "Fonts"
 
-
 gio trash $HOME/.config/fontconfig/conf.d 2> /dev/null || true
 mkdir -p $HOME/.config/fontconfig/conf.d/
 
