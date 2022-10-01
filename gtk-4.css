@@ -1,10 +1,5 @@
 /* better readability */
 
-popover.background separator.horizontal {
-    margin-top: 6px;
-    margin-bottom: 6px;
-}
-
 .dim-label, .titlebar.subtitle {
     opacity: 0.8;
 }
