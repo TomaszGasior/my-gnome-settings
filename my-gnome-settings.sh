@@ -151,8 +151,8 @@ if schema_exists org.gnome.Terminal.Legacy.Settings; then
     gsettings set $keybindings_schema:$keybindings_path set-terminal-title '<Control><Shift>a' || true
 
     if is_ubuntu_session; then
-        gsettings set $profile_schema:$profile_path background-color 'rgb(33,33,33)'
-        gsettings set $profile_schema:$profile_path foreground-color 'rgb(247,247,247)'
+        gsettings set $profile_schema:$profile_path foreground-color 'rgb(33,33,33)'
+        gsettings set $profile_schema:$profile_path background-color 'rgb(247,247,247)'
         gsettings set $profile_schema:$profile_path use-theme-colors false
     fi
 fi
