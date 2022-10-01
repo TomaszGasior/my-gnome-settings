@@ -9,11 +9,6 @@ popover.background separator.horizontal {
     margin-bottom: 6px;
 }
 
-treeview {
-    padding: 2px;
-    -GtkTreeView-horizontal-separator: 5;
-}
-
 .dim-label, .titlebar.subtitle {
     opacity: 0.8;
 }
@@ -36,6 +31,11 @@ levelbar trough {
 filechooser #pathbarbox {
     background: none;
     border-bottom: 1px solid @unfocused_borders;
+}
+
+.nautilus-window treeview, filechooser treeview {
+    padding: 2px;
+    -GtkTreeView-horizontal-separator: 5;
 }
 
 toolbutton button {

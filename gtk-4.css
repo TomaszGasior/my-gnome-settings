@@ -5,10 +5,6 @@ popover.background separator.horizontal {
     margin-bottom: 6px;
 }
 
-treeview {
-    min-height: 26px;
-}
-
 .dim-label, .titlebar.subtitle {
     opacity: 0.8;
 }
@@ -35,6 +31,10 @@ filechooser #pathbarbox {
 
 menubar popover.menu contents, menubar popover.menu modelbutton {
     border-radius: 0;
+}
+
+filechooser treeview {
+	min-height: 1.9em;
 }
 
 
