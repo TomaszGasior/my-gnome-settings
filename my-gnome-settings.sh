@@ -72,7 +72,6 @@ gsettings set org.gnome.desktop.peripherals.touchpad edge-scrolling-enabled fals
 gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
 gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click false
 gsettings set org.gnome.desktop.peripherals.touchpad two-finger-scrolling-enabled true
-gsettings set org.gnome.desktop.peripherals.mouse speed -0.4437
 
 
 ____ "Power and screensaver"
@@ -91,7 +90,6 @@ gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Super>Tab
 gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "['<Shift><Super>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"
 gsettings set org.gnome.desktop.wm.keybindings switch-windows-backward "['<Shift><Alt>Tab']"
-gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Primary><Super>F11']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-maximized "['<Super>Up']"
 
 
@@ -251,33 +249,11 @@ gsettings set org.gtk.Settings.FileChooser startup-mode 'cwd'
 gsettings set org.gtk.Settings.FileChooser window-position '(0, 0)'
 gsettings set org.gtk.Settings.FileChooser window-size '(750, 550)'
 
-dconf write /org/gtk/settings/debug/inspector-warning false
-
 
 ____ "Various desktop settings"
 
 gsettings set org.gnome.desktop.a11y always-show-text-caret true
 gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 0
-
-
-____ "Optional applications"
-
-dconf write /ca/desrt/dconf-editor/behaviour "'safe'"
-dconf write /ca/desrt/dconf-editor/show-warning false
-dconf write /ca/desrt/dconf-editor/use-shortpaths true
-dconf write /ca/desrt/dconf-editor/window-height 600
-dconf write /ca/desrt/dconf-editor/window-width 800
-
-dconf write /org/gnome/gitg/preferences/commit/diff/context-lines 6
-dconf write /org/gnome/gitg/preferences/commit/message/enable-spell-checking true
-dconf write /org/gnome/gitg/preferences/commit/message/spell-checking-language "'en_US'"
-dconf write /org/gnome/gitg/preferences/interface/orientation "'horizontal'"
-dconf write /org/gnome/gitg/preferences/interface/style-scheme "'kate'"
-
-dconf write /org/flozz/nautilus-terminal/custom-command "'/bin/bash'"
-dconf write /org/flozz/nautilus-terminal/default-show-terminal false
-dconf write /org/flozz/nautilus-terminal/min-terminal-height 6
-dconf write /org/flozz/nautilus-terminal/use-custom-command true
 
 
 if is_ubuntu_session; then
