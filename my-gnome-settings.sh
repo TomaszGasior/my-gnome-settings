@@ -4,6 +4,7 @@ set -euo pipefail
 ____() { echo -e "\e[1m### \e[7m$1\e[0m"; }
 is_ubuntu_session() { [[ "${GNOME_SHELL_SESSION_MODE:-}" = "ubuntu" ]] || return 1; }
 download_cmd() { ([[ `command -v curl` ]] && echo "curl -s") || echo "wget -q -O -"; }
+schema_exists() { gsettings list-children $1 &> /dev/null || return 1; }
 
 dconf_backup_file="$HOME/.config/dconf/dconf-dump-`date -Iseconds`"
 dconf dump / > $dconf_backup_file
@@ -172,7 +173,7 @@ gsettings set org.gnome.gedit.state.window size '(720, 560)'
 
 ____ "System monitor"
 
-if [[ `command -v gnome-system-monitor` != '/snap/bin/gnome-system-monitor' ]]; then
+if schema_exists org.gnome.gnome-system-monitor; then
     gsettings set org.gnome.gnome-system-monitor window-state '(750, 650, 0, 0)'
     gsettings set org.gnome.gnome-system-monitor show-dependencies false
     gsettings set org.gnome.gnome-system-monitor show-whose-processes 'all'
