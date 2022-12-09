@@ -141,7 +141,7 @@ if schema_exists org.gnome.Terminal.Legacy.Settings; then
     gsettings set $profile_schema:$profile_path default-size-columns 100
     gsettings set $profile_schema:$profile_path default-size-rows 30
     gsettings set $profile_schema:$profile_path scrollback-unlimited true
-    gsettings set $profile_schema:$profile_path scrollbar-policy 'never'
+    gsettings set $profile_schema:$profile_path scrollbar-policy 'always'
     gsettings set $profile_schema:$profile_path use-system-font true
     gsettings set $profile_schema:$profile_path word-char-exceptions "''"
 
