@@ -39,7 +39,7 @@ ____ "Window manager"
 
 gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu:close'
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'
-gsettings set org.gnome.mutter center-new-windows true
+gsettings set org.gnome.mutter center-new-windows false
 
 
 ____ "File manager"
