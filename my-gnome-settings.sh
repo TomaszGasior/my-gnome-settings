@@ -292,20 +292,6 @@ if is_ubuntu_session; then
 fi
 
 
-____ "Sounds"
-
-gio trash $HOME/.local/share/sounds/__custom 2> /dev/null || true
-mkdir -p $HOME/.local/share/sounds/__custom
-
-echo -e "[Sound Theme]\nName=N\nInherits=freedesktop\nDirectories=." > $HOME/.local/share/sounds/__custom/index.theme
-ln -s /usr/share/sounds/gnome/default/alerts/sonar.ogg $HOME/.local/share/sounds/__custom/bell-terminal.ogg || true
-ln -s /usr/share/sounds/gnome/default/alerts/sonar.ogg $HOME/.local/share/sounds/__custom/bell-window-system.ogg || true
-
-gsettings set org.gnome.desktop.sound event-sounds true
-gsettings set org.gnome.desktop.sound input-feedback-sounds true
-gsettings set org.gnome.desktop.sound theme-name '__custom'
-
-
 ____ "GTK custom stylesheet"
 
 gtk3_stylesheet_url="https://raw.githubusercontent.com/TomaszGasior/my-gnome-settings/master/gtk-3.css"
